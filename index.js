@@ -4,7 +4,9 @@ updateTable();
 
 document.querySelector(".img1").setAttribute("src", "./images/6.png");
 document.querySelector(".img2").setAttribute("src", "./images/6.png");
-let dice1 = Math.ceil(Math.random() * 6);
+
+document.addEventListener('keydown',function (){
+  let dice1 = Math.ceil(Math.random() * 6);
 let dice2 = Math.ceil(Math.random() * 6);
 let src1 = "./images/" + dice1 + ".png";
 let src2 = "./images/" + dice2 + ".png";
@@ -25,6 +27,8 @@ if (dice1 === dice2) {
   localStorage.setItem('score2',JSON.stringify(temp));
   updateTable();
 }
+})
+
 function updateTable(){
   document.querySelector('#score2').innerText= JSON.parse(localStorage.getItem('score2'))||0;
   document.querySelector('#score1').innerText=JSON.parse(localStorage.getItem('score1'))||0;
@@ -32,6 +36,7 @@ function updateTable(){
 document.querySelector('table+p').addEventListener('click',function(){
   localStorage.setItem('score1',0);
   localStorage.setItem('score2',0);
+  document.querySelector('h2').textContent= "Start!"
   updateTable();
 })
 
